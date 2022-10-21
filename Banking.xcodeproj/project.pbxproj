@@ -53,7 +53,6 @@
 		477806CD28FE855C00452F1E = {
 			isa = PBXGroup;
 			children = (
-				477806F329013CBD00452F1E /* Bank.swift */,
 				477806D828FE855C00452F1E /* Banking */,
 				477806D728FE855C00452F1E /* Products */,
 			);
@@ -74,6 +73,7 @@
 				477806E328FFC28900452F1E /* protocols */,
 				477806D928FE855C00452F1E /* main.swift */,
 				477806F1290110DD00452F1E /* BankDB.swift */,
+				477806F329013CBD00452F1E /* Bank.swift */,
 			);
 			path = Banking;
 			sourceTree = "<group>";
