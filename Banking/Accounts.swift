@@ -12,13 +12,13 @@ class User{
     
     var name: String
     var phonenumber: String
-    var password: Int
+    var password: String
     
     
     public init(name: String, phonenumber: String, password: String) {
         self.name = name
         self.phonenumber = phonenumber
-        self.password = password.hash
+        self.password = password
     }
 }
 
@@ -54,7 +54,7 @@ protocol BankAccount{
 
 
 
-class SavingsAccount: BankAccount,DepositableAccount,WithDrawableAccount{
+class SavingsAccount: BankAccount{
     
     let accountNumber: String
     
@@ -71,7 +71,7 @@ class SavingsAccount: BankAccount,DepositableAccount,WithDrawableAccount{
     
 }
 
-class CurrentAccount: BankAccount,DepositableAccount,WithDrawableAccount{
+class CurrentAccount: BankAccount{
     
     let accountNumber: String
     
