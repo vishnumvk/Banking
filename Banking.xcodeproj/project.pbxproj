@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		473EE287290F97F60045A694 /* InputManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473EE286290F97F60045A694 /* InputManager.swift */; };
+		473EE289290FD0670045A694 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473EE288290FD0670045A694 /* User.swift */; };
 		477806DA28FE855C00452F1E /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477806D928FE855C00452F1E /* main.swift */; };
 		477806E928FFD27F00452F1E /* Accounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477806E828FFD27F00452F1E /* Accounts.swift */; };
 		477806ED28FFF48100452F1E /* TransactionServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477806EC28FFF48100452F1E /* TransactionServices.swift */; };
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		473EE286290F97F60045A694 /* InputManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputManager.swift; sourceTree = "<group>"; };
+		473EE288290FD0670045A694 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		477806D628FE855C00452F1E /* Banking */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Banking; sourceTree = BUILT_PRODUCTS_DIR; };
 		477806D928FE855C00452F1E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		477806E828FFD27F00452F1E /* Accounts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accounts.swift; sourceTree = "<group>"; };
@@ -54,7 +56,13 @@
 			isa = PBXGroup;
 			children = (
 				473EE286290F97F60045A694 /* InputManager.swift */,
-				477806D828FE855C00452F1E /* Banking */,
+				477806F329013CBD00452F1E /* Bank.swift */,
+				477806E828FFD27F00452F1E /* Accounts.swift */,
+				477806D928FE855C00452F1E /* main.swift */,
+				473EE288290FD0670045A694 /* User.swift */,
+				477806EF28FFFAF600452F1E /* Transaction.swift */,
+				477806EC28FFF48100452F1E /* TransactionServices.swift */,
+				477806F1290110DD00452F1E /* BankDB.swift */,
 				477806D728FE855C00452F1E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -65,27 +73,6 @@
 				477806D628FE855C00452F1E /* Banking */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		477806D828FE855C00452F1E /* Banking */ = {
-			isa = PBXGroup;
-			children = (
-				477806EE28FFFA2500452F1E /* TransactionControl */,
-				477806F1290110DD00452F1E /* BankDB.swift */,
-				477806F329013CBD00452F1E /* Bank.swift */,
-				477806E828FFD27F00452F1E /* Accounts.swift */,
-				477806D928FE855C00452F1E /* main.swift */,
-			);
-			path = Banking;
-			sourceTree = "<group>";
-		};
-		477806EE28FFFA2500452F1E /* TransactionControl */ = {
-			isa = PBXGroup;
-			children = (
-				477806EC28FFF48100452F1E /* TransactionServices.swift */,
-				477806EF28FFFAF600452F1E /* Transaction.swift */,
-			);
-			path = TransactionControl;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,6 +137,7 @@
 				477806ED28FFF48100452F1E /* TransactionServices.swift in Sources */,
 				477806F2290110DD00452F1E /* BankDB.swift in Sources */,
 				477806DA28FE855C00452F1E /* main.swift in Sources */,
+				473EE289290FD0670045A694 /* User.swift in Sources */,
 				477806E928FFD27F00452F1E /* Accounts.swift in Sources */,
 				477806F028FFFAF600452F1E /* Transaction.swift in Sources */,
 				477806F429013CBD00452F1E /* Bank.swift in Sources */,
