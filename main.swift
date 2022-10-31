@@ -12,8 +12,25 @@ let user1 = User(name: "vishnu", phonenumber: "8309914972", password: "mvk@")
 
 func createUserAcc()-> User?{
     let name = InputManager.readValid(promtMsg: "Enter valid name",validateBy: { name in
-        let validname = name.trimmingCharacters(in: .whitespacesAndNewlines)
-        return validname != "" ? true : false
+        
+        guard name.trimmingCharacters(in: .whitespacesAndNewlines) != ""
+        else{
+            return false
+        }
+        let nameCharSet = CharacterSet(charactersIn: name)
+        
+        if(name.count >= 3 && name.count < 25 && nameCharSet.isSubset(of: .letters.union(.whitespaces))){
+            return true
+        }
+        else{
+            return false
+        }
+        
+        
+        
+        
+        
+        
     })
     
     let ph = InputManager.readValid(promtMsg: "Enter valid Phone number", validateBy: InputManager.validatePhUsingRegex)

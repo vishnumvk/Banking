@@ -16,7 +16,7 @@ protocol Transaction{
     
 }
 
-struct DepositTransaction: Transaction{
+struct Credit: Transaction{
     let TID: Int
     
     let by: String
@@ -29,7 +29,7 @@ struct DepositTransaction: Transaction{
 }
 
 
-struct WithDrawTransaction: Transaction{
+struct Debit: Transaction{
     let TID: Int
     
     let by: String

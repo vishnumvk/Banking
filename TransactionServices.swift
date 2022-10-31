@@ -12,14 +12,12 @@ class TransactionServices{
     var transactionDB : [String : [Transaction]]=[:]
     
     
-    func deposit(target: inout BankAccount,amount: Float){
-        target.balance += amount
-        print(target.balance)
+    func deposit(target: BankAccount,amount: Float){
+        
     }
     
-    func withdraw(target: inout BankAccount,amount: Float){
-        target.balance -= amount
-        print(target.balance)
+    func withdraw(target: BankAccount,amount: Float){
+        
     }
     
     

@@ -55,14 +55,14 @@
 		477806CD28FE855C00452F1E = {
 			isa = PBXGroup;
 			children = (
-				473EE286290F97F60045A694 /* InputManager.swift */,
-				477806F329013CBD00452F1E /* Bank.swift */,
 				477806E828FFD27F00452F1E /* Accounts.swift */,
-				477806D928FE855C00452F1E /* main.swift */,
 				473EE288290FD0670045A694 /* User.swift */,
 				477806EF28FFFAF600452F1E /* Transaction.swift */,
 				477806EC28FFF48100452F1E /* TransactionServices.swift */,
 				477806F1290110DD00452F1E /* BankDB.swift */,
+				473EE286290F97F60045A694 /* InputManager.swift */,
+				477806F329013CBD00452F1E /* Bank.swift */,
+				477806D928FE855C00452F1E /* main.swift */,
 				477806D728FE855C00452F1E /* Products */,
 			);
 			sourceTree = "<group>";
