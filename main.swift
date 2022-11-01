@@ -7,47 +7,46 @@
 
 import Foundation
 
-let user1 = User(name: "vishnu", phonenumber: "8309914972", password: "mvk@")
+let db = BankDB()
+
+let loginManager = LoginControl(db: db)
 
 
-func createUserAcc()-> User?{
-    let name = InputManager.readValid(promtMsg: "Enter valid name",validateBy: { name in
-        
-        guard name.trimmingCharacters(in: .whitespacesAndNewlines) != ""
-        else{
-            return false
-        }
-        let nameCharSet = CharacterSet(charactersIn: name)
-        
-        if(name.count >= 3 && name.count < 25 && nameCharSet.isSubset(of: .letters.union(.whitespaces))){
-            return true
-        }
-        else{
-            return false
-        }
-        
-        
-        
-        
-        
-        
-    })
+
+var hitexit = false
+repeat{
     
-    let ph = InputManager.readValid(promtMsg: "Enter valid Phone number", validateBy: InputManager.validatePhUsingRegex)
-    
-    let password = InputManager.readValid(promtMsg: "Enter valid four digit pin ",validateBy: { pin in
-        let pinCharSet = CharacterSet(charactersIn: pin)
-        
-        if(pin.count == 4 && pinCharSet.isSubset(of: CharacterSet(charactersIn: "0123456789"))){
-            return true
+    print("""
+          0 --- Exit
+          1 --- Login
+          2 --- Register
+          """)
+    let choice = InputManager.readValidInt()
+    switch choice{
+        //login
+    case 1 :
+        do{
+            let ph = InputManager.readValid(promtMsg: "Enter valid phone number..", validateBy: InputManager.validatePhUsingRegex)
+            try loginManager.userLogin(phoneNumber: ph)
         }
-        else{
-            return false
+        catch LoginErrors.invalidLogin{
+            print("Invalid login")
         }
-        
-    })
-    
-    return User(name: name.trimmingCharacters(in: .whitespacesAndNewlines), phonenumber: ph, password: password)
+        catch LoginErrors.unregisteredUser{
+            print("the number is not registered..")
+        }
+        //register
+    case 2 :
+        do {
+           try UserReg(db).createUser()
+        }
+        catch UserRegError.foundExsistingUser{
+            print("found exsisting user")
+        }
+    case 0:
+        hitexit = true
+    default :
+        print("Enter a valid choice..")
+    }
 }
-
-print(createUserAcc()!.name + "---")
+while(!hitexit)
