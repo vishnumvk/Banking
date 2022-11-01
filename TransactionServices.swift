@@ -7,9 +7,21 @@
 
 import Foundation
 
+protocol TransactionsDB{
+    
+    
+    func logTNX(accNo: String,_ tnx: Transaction)
+    func getTransactionsOf(accNo: String)->[Transaction]?
+    
+}
+
+
+
+
+
 class TransactionServices{
     
-    var transactionDB : [String : [Transaction]]=[:]
+    
     
     
     func deposit(target: BankAccount,amount: Float){

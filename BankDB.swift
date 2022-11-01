@@ -7,8 +7,31 @@
 
 import Foundation
 
-class BankDB{
+class BankDB: TransactionsDB,UserDB{
     
-    var userDB: [String  : [User : [BankAccount]]] = [:]
+    
+    var transactionDB : [String : [Transaction]]=[:]
+    var userDB: [String  : User] = [:]
+    
+    
+    func logTNX(accNo: String, _ tnx: Transaction) {
+        
+    }
+    
+    func getTransactionsOf(accNo: String) -> [Transaction]? {
+        return nil
+    }
+    func addUser(_ user: User) {
+        userDB[user.phonenumber] = user
+    }
+    
+    func getUserBy(phoneNumber: String) -> User? {
+        if let user = userDB[phoneNumber]{
+            return user
+        }
+        else {
+            return nil
+        }
+    }
     
 }

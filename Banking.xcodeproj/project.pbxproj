@@ -15,6 +15,8 @@
 		477806F028FFFAF600452F1E /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477806EF28FFFAF600452F1E /* Transaction.swift */; };
 		477806F2290110DD00452F1E /* BankDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477806F1290110DD00452F1E /* BankDB.swift */; };
 		477806F429013CBD00452F1E /* Bank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477806F329013CBD00452F1E /* Bank.swift */; };
+		47D66D95290FFC65004F09D3 /* UserReg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D66D94290FFC65004F09D3 /* UserReg.swift */; };
+		47D66D972910EFE5004F09D3 /* LoginControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D66D962910EFE5004F09D3 /* LoginControl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -39,6 +41,8 @@
 		477806EF28FFFAF600452F1E /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		477806F1290110DD00452F1E /* BankDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankDB.swift; sourceTree = "<group>"; };
 		477806F329013CBD00452F1E /* Bank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bank.swift; sourceTree = "<group>"; };
+		47D66D94290FFC65004F09D3 /* UserReg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReg.swift; sourceTree = "<group>"; };
+		47D66D962910EFE5004F09D3 /* LoginControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginControl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +59,8 @@
 		477806CD28FE855C00452F1E = {
 			isa = PBXGroup;
 			children = (
+				47D66D962910EFE5004F09D3 /* LoginControl.swift */,
+				47D66D94290FFC65004F09D3 /* UserReg.swift */,
 				477806E828FFD27F00452F1E /* Accounts.swift */,
 				473EE288290FD0670045A694 /* User.swift */,
 				477806EF28FFFAF600452F1E /* Transaction.swift */,
@@ -134,11 +140,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				473EE287290F97F60045A694 /* InputManager.swift in Sources */,
+				47D66D95290FFC65004F09D3 /* UserReg.swift in Sources */,
 				477806ED28FFF48100452F1E /* TransactionServices.swift in Sources */,
 				477806F2290110DD00452F1E /* BankDB.swift in Sources */,
 				477806DA28FE855C00452F1E /* main.swift in Sources */,
 				473EE289290FD0670045A694 /* User.swift in Sources */,
 				477806E928FFD27F00452F1E /* Accounts.swift in Sources */,
+				47D66D972910EFE5004F09D3 /* LoginControl.swift in Sources */,
 				477806F028FFFAF600452F1E /* Transaction.swift in Sources */,
 				477806F429013CBD00452F1E /* Bank.swift in Sources */,
 			);
