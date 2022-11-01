@@ -17,6 +17,7 @@
 		477806F429013CBD00452F1E /* Bank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477806F329013CBD00452F1E /* Bank.swift */; };
 		47D66D95290FFC65004F09D3 /* UserReg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D66D94290FFC65004F09D3 /* UserReg.swift */; };
 		47D66D972910EFE5004F09D3 /* LoginControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D66D962910EFE5004F09D3 /* LoginControl.swift */; };
+		47F8D3772911168600D2062C /* UserServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F8D3762911168600D2062C /* UserServices.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,6 +44,7 @@
 		477806F329013CBD00452F1E /* Bank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bank.swift; sourceTree = "<group>"; };
 		47D66D94290FFC65004F09D3 /* UserReg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReg.swift; sourceTree = "<group>"; };
 		47D66D962910EFE5004F09D3 /* LoginControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginControl.swift; sourceTree = "<group>"; };
+		47F8D3762911168600D2062C /* UserServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServices.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 		477806CD28FE855C00452F1E = {
 			isa = PBXGroup;
 			children = (
+				47F8D3762911168600D2062C /* UserServices.swift */,
 				47D66D962910EFE5004F09D3 /* LoginControl.swift */,
 				47D66D94290FFC65004F09D3 /* UserReg.swift */,
 				477806E828FFD27F00452F1E /* Accounts.swift */,
@@ -140,6 +143,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				473EE287290F97F60045A694 /* InputManager.swift in Sources */,
+				47F8D3772911168600D2062C /* UserServices.swift in Sources */,
 				47D66D95290FFC65004F09D3 /* UserReg.swift in Sources */,
 				477806ED28FFF48100452F1E /* TransactionServices.swift in Sources */,
 				477806F2290110DD00452F1E /* BankDB.swift in Sources */,

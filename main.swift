@@ -41,7 +41,7 @@ repeat{
            try UserReg(db).createUser()
         }
         catch UserRegError.foundExsistingUser{
-            print("found exsisting user")
+            print("your are an exsisting user ! try login")
         }
     case 0:
         hitexit = true
