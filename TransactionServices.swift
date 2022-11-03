@@ -20,22 +20,30 @@ protocol TransactionsDB{
 
 
 class TransactionServices{
-    
-    
-    
-    
-    func deposit(target: BankAccount,amount: Float){
-        
-    }
-    
-    func withdraw(target: BankAccount,amount: Float){
-        
+    init(db: TransactionsDB) {
+        self.db = db
     }
     
     
+    let db : TransactionsDB
     
     
-    init() {
+    func deposit(_ target: SavingsAccount,amount: Double){
+        target.balance += amount
+        db.logTNX(accNo: target.accountNumber, Transaction(TID: 5555551, by: "tnxservices", date: Date.now, amount: amount, type: .debit))
+    }
+    
+    func withdraw(_ target: SavingsAccount,amount: Double){
+        
+        target.balance += amount
+        db.logTNX(accNo: target.accountNumber, Transaction(TID: 5555551, by: "tnxservices", date: Date.now, amount: amount, type: .credit))
         
     }
+    
+    func checkBalance(_ target: SavingsAccount){
+        print("your balance : \(target.balance)")
+    }
+    
+    
+    
 }

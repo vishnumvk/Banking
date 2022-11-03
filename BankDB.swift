@@ -7,19 +7,32 @@
 
 import Foundation
 
-class BankDB: TransactionsDB,UserDB{
+class BankDB: TransactionsDB,UserDB,UserServicesDB{
+    
     
     
     var transactionDB : [String : [Transaction]]=[:]
     var userDB: [String  : User] = [:]
+    var accDB: [String : SavingsAccount]
+    
+    
+    func getSavingsAccount(userID: String) -> SavingsAccount {
+       return accDB[userID]
+    }
     
     
     func logTNX(accNo: String, _ tnx: Transaction) {
+//        if var accPassBook = transactionDB[accNo]{
+//            accPassBook.append(tnx)
+//        }else{
+//            transactionDB[accNo] = [tnx]
+//        }
         
+        transactionDB[accNo,default: [tnx]].append(tnx)
     }
     
     func getTransactionsOf(accNo: String) -> [Transaction]? {
-        return nil
+        return transactionDB[accNo]
     }
     func addUser(_ user: User) {
         userDB[user.phonenumber] = user

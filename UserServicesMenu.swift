@@ -9,10 +9,11 @@ import Foundation
 
 protocol UserServicesDB: TransactionsDB,UserDB{
     
-    
+    func getSavingsAccount(userID: String)->SavingsAccount
+
 }
 
-class UserServices{
+class UserServicesMenu{
     
     
      init(db: UserServicesDB, user: User) {
@@ -23,8 +24,8 @@ class UserServices{
     
     
     
-    var db: UserServicesDB
-    var user: User
+    let db: UserServicesDB
+    let user: User
     
     
     func load(){
@@ -35,16 +36,22 @@ class UserServices{
             
             print("""
                   0 --- Exit
-                  1 --- Profile
-                  2 --- Deposit
-                  3 --- Withdraw
+                  1 --- savings account
+                  2 --- Fixed Deposit
+                  3 --- joint accounts
                   """)
             let choice = InputManager.readValidInt()
             switch choice{
                 
+            case 1:
+                let amount = InputManager.readValidAmount()
+                TransactionServices(db: db).deposit(db.getSavingsAccount(userID: user.phonenumber), amount: amount)
+                
+                
             
             case 0:
                 hitexit = true
+                
             default :
                 print("Enter a valid choice..")
             }

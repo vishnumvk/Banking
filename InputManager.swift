@@ -12,26 +12,62 @@ public struct InputManager{
         case InvalidNumber
         case InvalidPhoneNumber
     }
+//    public static func readValidInt()->Int{
+//        var x: Int?
+//        var isSuccess = false
+//        repeat{
+//
+//            do{
+//                x = Int(readLine() ?? "nil")
+//                guard x != nil else{
+//                    throw InputErrors.InvalidNumber
+//                }
+//                isSuccess = true
+//            }
+//            catch {
+//                print("Enter a valid number..!")
+//                isSuccess = false
+//            }
+//
+//        }while(!isSuccess)
+//        return x!;
+//    }
+    
+    
+    
     public static func readValidInt()->Int{
-        var x: Int?
-        var isSuccess : Bool = false
+        var isSuccess = false
         repeat{
-            
-            do{
-                x = Int(readLine() ?? "nil")
-                guard x != nil else{
-                    throw InputErrors.InvalidNumber
+            if let input = readLine(){
+                if let x = Int(input){
+                    return x
+                }else{
+                    print("enter a valid number...")
                 }
-                isSuccess = true
             }
-            catch {
-                print("Enter a valid number..!")
-                isSuccess = false
-            }
-            
         }while(!isSuccess)
-        return x!;
     }
+    
+    
+    
+    public static func readValidAmount()->Double{
+        var isSuccess = false
+        repeat{
+            if let input = readLine(){
+                if let x = Double(input){
+                    return (x * 100).rounded()/100;
+                }
+            }
+        }while(!isSuccess)
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     public static func readValidPhoneNumber()->String{
@@ -137,3 +173,11 @@ public struct InputManager{
     
 }
 
+struct BankUtils{
+    
+    static var newUserID: UInt{
+        get{
+            
+        }
+    }
+}
