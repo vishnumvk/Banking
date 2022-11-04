@@ -36,9 +36,8 @@ class UserServicesMenu{
             
             print("""
                   0 --- Exit
-                  1 --- savings account
-                  2 --- Fixed Deposit
-                  3 --- joint accounts
+                  1 --- deposit
+                  
                   """)
             let choice = InputManager.readValidInt()
             switch choice{

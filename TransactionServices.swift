@@ -30,13 +30,15 @@ class TransactionServices{
     
     func deposit(_ target: SavingsAccount,amount: Double){
         target.balance += amount
-        db.logTNX(accNo: target.accountNumber, Transaction(TID: 5555551, by: "tnxservices", date: Date.now, amount: amount, type: .debit))
+        let tnx = Transaction(tID: 5555551, by: "tnxservices", date: Date.now, amount: amount, type: .debit)
+        print(tnx.description)
+        db.logTNX(accNo: target.accountNumber, tnx)
     }
     
     func withdraw(_ target: SavingsAccount,amount: Double){
         
         target.balance += amount
-        db.logTNX(accNo: target.accountNumber, Transaction(TID: 5555551, by: "tnxservices", date: Date.now, amount: amount, type: .credit))
+        db.logTNX(accNo: target.accountNumber, Transaction(tID: 5555551, by: "tnxservices", date: Date.now, amount: amount, type: .credit))
         
     }
     

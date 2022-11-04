@@ -9,15 +9,18 @@ import Foundation
 
 class BankDB: TransactionsDB,UserDB,UserServicesDB{
     
+    private init(){
+    }
     
+    static let db = BankDB()
     
     var transactionDB : [String : [Transaction]]=[:]
     var userDB: [String  : User] = [:]
-    var accDB: [String : SavingsAccount]
+    var accDB: [String : SavingsAccount] = [:]
     
     
     func getSavingsAccount(userID: String) -> SavingsAccount {
-       return accDB[userID]
+        return accDB[userID, default: SavingsAccount(accountNumber: "newAcc", IFSC: "sample001", balance: 1000)]
     }
     
     

@@ -11,9 +11,9 @@ import Foundation
 
 class User{
     
-    var name: String
-    var phonenumber: String
-    var password: String
+    let name: String
+    let phonenumber: String
+    let password: String
     
     
     public init(name: String, phonenumber: String, password: String) {

@@ -22,7 +22,7 @@ class MainPage{
     
    static func load(){
         
-        let db = BankDB()
+       let db = BankDB.db
 
         let loginManager = LoginControl(db: db)
 
@@ -41,7 +41,7 @@ class MainPage{
                 do{
                     let ph = InputManager.readValid(promtMsg: "Enter valid phone number..", validateBy: InputManager.validatePhUsingRegex)
                     try loginManager.userLogin(phoneNumber: ph)
-                    print("needs: implementation for successful login")
+//                    print("needs: implementation for successful login")
                 }
                 catch LoginErrors.invalidLogin{
                     print("Invalid login")

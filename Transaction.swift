@@ -21,8 +21,12 @@ enum TransactionType: String{
     case debit
 }
 
-struct Transaction{
-    let TID: Int
+struct Transaction: CustomStringConvertible{
+    var description: String{
+        return "TID: \(self.tID)  \(self.date)   credit/debit: \(self.type)  amount: \(self.amount)"
+    }
+    
+    let tID: Int
     
     let by: String
     

@@ -12,31 +12,11 @@ public struct InputManager{
         case InvalidNumber
         case InvalidPhoneNumber
     }
-//    public static func readValidInt()->Int{
-//        var x: Int?
-//        var isSuccess = false
-//        repeat{
-//
-//            do{
-//                x = Int(readLine() ?? "nil")
-//                guard x != nil else{
-//                    throw InputErrors.InvalidNumber
-//                }
-//                isSuccess = true
-//            }
-//            catch {
-//                print("Enter a valid number..!")
-//                isSuccess = false
-//            }
-//
-//        }while(!isSuccess)
-//        return x!;
-//    }
-    
+
     
     
     public static func readValidInt()->Int{
-        var isSuccess = false
+        
         repeat{
             if let input = readLine(){
                 if let x = Int(input){
@@ -45,20 +25,21 @@ public struct InputManager{
                     print("enter a valid number...")
                 }
             }
-        }while(!isSuccess)
+        }while(true)
     }
     
     
     
     public static func readValidAmount()->Double{
-        var isSuccess = false
+        
         repeat{
+            print("Enter valid amount..")
             if let input = readLine(){
-                if let x = Double(input){
+                if let x = Double(input) && x > 0.00{
                     return (x * 100).rounded()/100;
                 }
             }
-        }while(!isSuccess)
+        }while(true)
     }
     
     
@@ -109,7 +90,7 @@ public struct InputManager{
     
     
     public static func readValidPhoneNumber(readFrom : (Bool)->String? = readLine,validateBy : (String)->Bool = validatePhUsingRegex, errorMsg : String? = nil)->String{
-        let isnotValid : Bool = true
+//        let isnotValid : Bool = true
         repeat{
             if let ph = readFrom(true){
                 if(validateBy(ph)){
@@ -122,7 +103,7 @@ public struct InputManager{
                 }
             }
             
-        }while(isnotValid)
+        }while(true)
         
     }
     
@@ -175,9 +156,5 @@ public struct InputManager{
 
 struct BankUtils{
     
-    static var newUserID: UInt{
-        get{
-            
-        }
-    }
+    
 }
