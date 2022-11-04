@@ -7,6 +7,7 @@
 
 import Foundation
 
+<<<<<<< HEAD
 let db = BankDB()
 
 let loginManager = LoginControl(db: db)
