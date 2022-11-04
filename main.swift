@@ -51,3 +51,6 @@ repeat{
     }
 }
 while(!hitexit)
+=======
+MainPage.load()
+>>>>>>> sandbox1

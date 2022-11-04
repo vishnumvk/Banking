@@ -62,7 +62,8 @@ class LoginControl{
         
         
         if validateLogin(user){
-            print("need imp")
+            
+            UserServicesMenu(db: BankDB.db, user: user).load()
         }
         else{
             throw LoginErrors.invalidLogin

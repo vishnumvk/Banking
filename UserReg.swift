@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum UserRegError: Error{
+enum UserRegErrors: Error{
     case foundExsistingUser
 }
 
@@ -46,7 +46,7 @@ class UserReg{
         let ph = InputManager.readValid(promtMsg: "Enter valid Phone number", validateBy: InputManager.validatePhUsingRegex)
        
        if (db.getUserBy(phoneNumber: ph)) != nil{
-           throw UserRegError.foundExsistingUser
+           throw UserRegErrors.foundExsistingUser
        }
         
         let password = InputManager.readValid(promtMsg: "Enter valid four digit pin ",validateBy: { pin in

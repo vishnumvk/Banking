@@ -15,7 +15,7 @@ protocol BankAccount{
     
     var accountNumber: String { get }
     var IFSC: String { get }
-    var balance: Float { get set }
+    var balance: Double { get set }
     
     
   
@@ -31,9 +31,9 @@ class SavingsAccount: BankAccount{
     
     let IFSC: String
     
-    var balance: Float
+    var balance: Double
     
-     init(accountNumber: String, IFSC: String, balance: Float) {
+     init(accountNumber: String, IFSC: String, balance: Double) {
         self.accountNumber = accountNumber
         self.IFSC = IFSC
         self.balance = balance
@@ -48,9 +48,9 @@ class CurrentAccount: BankAccount{
     
     let IFSC: String
     
-    var balance: Float
+    var balance: Double
     
-     init(accountNumber: String, IFSC: String, balance: Float) {
+     init(accountNumber: String, IFSC: String, balance: Double) {
         self.accountNumber = accountNumber
         self.IFSC = IFSC
         self.balance = balance

@@ -12,26 +12,43 @@ public struct InputManager{
         case InvalidNumber
         case InvalidPhoneNumber
     }
+
+    
+    
     public static func readValidInt()->Int{
-        var x: Int?
-        var isSuccess : Bool = false
+        
         repeat{
-            
-            do{
-                x = Int(readLine() ?? "nil")
-                guard x != nil else{
-                    throw InputErrors.InvalidNumber
+            if let input = readLine(){
+                if let x = Int(input){
+                    return x
+                }else{
+                    print("enter a valid number...")
                 }
-                isSuccess = true
             }
-            catch {
-                print("Enter a valid number..!")
-                isSuccess = false
-            }
-            
-        }while(!isSuccess)
-        return x!;
+        }while(true)
     }
+    
+    
+    
+    public static func readValidAmount()->Double{
+        
+        repeat{
+            print("Enter valid amount..")
+            if let input = readLine(){
+                if let x = Double(input) && x > 0.00{
+                    return (x * 100).rounded()/100;
+                }
+            }
+        }while(true)
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     public static func readValidPhoneNumber()->String{
@@ -73,7 +90,7 @@ public struct InputManager{
     
     
     public static func readValidPhoneNumber(readFrom : (Bool)->String? = readLine,validateBy : (String)->Bool = validatePhUsingRegex, errorMsg : String? = nil)->String{
-        let isnotValid : Bool = true
+//        let isnotValid : Bool = true
         repeat{
             if let ph = readFrom(true){
                 if(validateBy(ph)){
@@ -86,7 +103,7 @@ public struct InputManager{
                 }
             }
             
-        }while(isnotValid)
+        }while(true)
         
     }
     
@@ -137,3 +154,7 @@ public struct InputManager{
     
 }
 
+struct BankUtils{
+    
+    
+}
