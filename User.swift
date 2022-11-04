@@ -9,7 +9,7 @@ import Foundation
 
 
 
-class User{
+class User: Codable{
     
     let name: String
     let phonenumber: String

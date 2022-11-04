@@ -37,7 +37,9 @@ class UserServicesMenu{
             print("""
                   0 --- Exit
                   1 --- deposit
-                  
+                  2 --- withdraw
+                  3 --- view transactions
+                  4 --- balance check
                   """)
             let choice = InputManager.readValidInt()
             switch choice{
@@ -45,8 +47,22 @@ class UserServicesMenu{
             case 1:
                 let amount = InputManager.readValidAmount()
                 TransactionServices(db: db).deposit(db.getSavingsAccount(userID: user.phonenumber), amount: amount)
+            case 2:
+                let amount = InputManager.readValidAmount()
+                TransactionServices(db: db).withdraw(db.getSavingsAccount(userID: user.phonenumber), amount: amount)
+            case 3:
                 
                 
+                if let tnxs = db.getTransactionsOf(accNo: db.getSavingsAccount(userID: user.phonenumber).accountNumber){
+                    for tnx in tnxs{
+                        print(tnx.description)
+                    }
+                }
+               else{
+                    print("no transactions..")
+                }
+            case 4:
+                print(db.getSavingsAccount(userID: user.phonenumber).balance)
             
             case 0:
                 hitexit = true

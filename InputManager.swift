@@ -35,8 +35,10 @@ public struct InputManager{
         repeat{
             print("Enter valid amount..")
             if let input = readLine(){
-                if let x = Double(input) && x > 0.00{
-                    return (x * 100).rounded()/100;
+                if let x = Double(input){
+                    if x > 0.00{
+                        return (x * 100).rounded()/100;
+                    }
                 }
             }
         }while(true)
@@ -154,7 +156,4 @@ public struct InputManager{
     
 }
 
-struct BankUtils{
-    
-    
-}
+

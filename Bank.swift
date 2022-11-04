@@ -21,3 +21,23 @@ import Foundation
 //    }
 //
 //}
+class BankUtils{
+    
+    private static var tnxCt = 0
+    private static var ifscCt = 0
+    private static var saCt = 0
+    
+    static func tnxId()->String{
+        tnxCt += 1
+        return "TNX" + String(tnxCt)
+    }
+    
+    static func savingsAccNo()->String{
+        saCt += 1
+        return "131200" + String(saCt)
+    }
+    static func ifsc()->String{
+        ifscCt += 1
+        return "SABK00" + String(ifscCt)
+    }
+}

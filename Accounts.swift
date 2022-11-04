@@ -25,7 +25,7 @@ protocol BankAccount{
 
 
 
-class SavingsAccount: BankAccount{
+class SavingsAccount: BankAccount,Codable{
     
     let accountNumber: String
     
@@ -42,7 +42,7 @@ class SavingsAccount: BankAccount{
     
 }
 
-class CurrentAccount: BankAccount{
+class CurrentAccount: BankAccount, Codable{
     
     let accountNumber: String
     

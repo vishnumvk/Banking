@@ -16,17 +16,17 @@ import Foundation
 //
 //}
 
-enum TransactionType: String{
+enum TransactionType: String,Codable{
     case credit
     case debit
 }
 
-struct Transaction: CustomStringConvertible{
+struct Transaction: CustomStringConvertible,Codable{
     var description: String{
         return "TID: \(self.tID)  \(self.date)   credit/debit: \(self.type)  amount: \(self.amount)"
     }
     
-    let tID: Int
+    let tID: String
     
     let by: String
     
@@ -38,15 +38,3 @@ struct Transaction: CustomStringConvertible{
 }
 
 
-//struct Debit: Transaction{
-//    let TID: Int
-//
-//    let by: String
-//
-//    let date: Date
-//
-//    let amount: Float
-//
-//
-//}
-//

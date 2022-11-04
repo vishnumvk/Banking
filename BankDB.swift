@@ -7,12 +7,12 @@
 
 import Foundation
 
-class BankDB: TransactionsDB,UserDB,UserServicesDB{
+class BankDB: TransactionsDB,UserDB,UserServicesDB,Codable{
     
     private init(){
     }
     
-    static let db = BankDB()
+    static var db = BankDB()
     
     var transactionDB : [String : [Transaction]]=[:]
     var userDB: [String  : User] = [:]
@@ -20,7 +20,14 @@ class BankDB: TransactionsDB,UserDB,UserServicesDB{
     
     
     func getSavingsAccount(userID: String) -> SavingsAccount {
-        return accDB[userID, default: SavingsAccount(accountNumber: "newAcc", IFSC: "sample001", balance: 1000)]
+        if let acc = accDB[userID]{
+            return acc
+        }
+        else{
+            accDB[userID] = SavingsAccount(accountNumber: BankUtils.savingsAccNo(), IFSC: BankUtils.ifsc(), balance: 0.00)
+            return accDB[userID]!
+        }
+        
     }
     
     
@@ -31,7 +38,7 @@ class BankDB: TransactionsDB,UserDB,UserServicesDB{
 //            transactionDB[accNo] = [tnx]
 //        }
         
-        transactionDB[accNo,default: [tnx]].append(tnx)
+        transactionDB[accNo,default: []].append(tnx)
     }
     
     func getTransactionsOf(accNo: String) -> [Transaction]? {
@@ -49,5 +56,10 @@ class BankDB: TransactionsDB,UserDB,UserServicesDB{
             return nil
         }
     }
-    
+//    deinit {
+//        let encoder = JSONEncoder()
+//        let data = try! encoder.encode(self)
+//        print(String(data: data, encoding: .utf8)!)
+//    }
 }
+
