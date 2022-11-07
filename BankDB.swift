@@ -24,7 +24,7 @@ class BankDB: TransactionsDB,UserDB,UserServicesDB,Codable{
             return acc
         }
         else{
-            accDB[userID] = SavingsAccount(accountNumber: BankUtils.savingsAccNo(), IFSC: BankUtils.ifsc(), balance: 0.00)
+            accDB[userID] = SavingsAccount(accountNumber: BankUtils.newSavingsAccNo(), IFSC: BankUtils.ifsc(), balance: 0.00)
             return accDB[userID]!
         }
         

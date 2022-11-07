@@ -21,23 +21,54 @@ import Foundation
 //    }
 //
 //}
+//class BankUtils{
+//
+//    private static var tnxCt = 0
+//    private static var ifscCt = 0
+//    private static var saCt = 0
+//
+//    static func tnxId()->String{
+//        tnxCt += 1
+//        return "TNX" + String(tnxCt)
+//    }
+//
+//    static func savingsAccNo()->String{
+//        saCt += 1
+//        return "131200" + String(saCt)
+//    }
+//    static func ifsc()->String{
+//        ifscCt += 1
+//        return "SABK00" + String(ifscCt)
+//    }
+//}
+
+
+extension Date{
+    
+    var numericString: String{
+        get{
+            var str = self.description
+            str.removeAll {"-+: ".contains($0)}
+            return String(str[...str.index(str.endIndex, offsetBy: -5)])
+        }
+    }
+    
+}
+
+
 class BankUtils{
     
-    private static var tnxCt = 0
-    private static var ifscCt = 0
-    private static var saCt = 0
     
-    static func tnxId()->String{
-        tnxCt += 1
-        return "TNX" + String(tnxCt)
+    static func newTnxId()->String{
+        return "TNX" + Date().numericString
     }
     
-    static func savingsAccNo()->String{
-        saCt += 1
-        return "131200" + String(saCt)
+    static func newSavingsAccNo()->String{
+        
+        return "131200" + Date().numericString
     }
     static func ifsc()->String{
-        ifscCt += 1
-        return "SABK00" + String(ifscCt)
+        
+        return "SABK00003112"
     }
 }
