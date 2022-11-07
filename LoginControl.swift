@@ -23,14 +23,12 @@ enum LoginErrors: Error{
 }
 
 class LoginControl{
-    init(db: UserDB) {
-        self.db = db
-    }
-    
     
     var db : UserDB
     
-    
+    init(db: UserDB) {
+        self.db = db
+    }
     func validateLogin(_ user: User)->Bool{
         
         let pass = InputManager.readValid(promtMsg: "Enter your password..") { password in
@@ -49,21 +47,14 @@ class LoginControl{
     }
     
     
-    
-    
-    func userLogin(phoneNumber: String)throws{
-        
-//        let ph = InputManager.readValid(promtMsg: "Enter registered Number..", validateBy: InputManager.validatePhUsingRegex)
-        
+    func userLogin(phoneNumber: String)throws->User{
         guard let user = db.getUserBy(phoneNumber: phoneNumber)
         else{
             throw LoginErrors.unregisteredUser
         }
-        
-        
         if validateLogin(user){
-            
-            UserServicesMenu(db: BankDB.db, user: user).load()
+//            UserServicesMenu(db: BankDB.db, user: user).load()
+            return user
         }
         else{
             throw LoginErrors.invalidLogin

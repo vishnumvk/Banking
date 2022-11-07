@@ -30,7 +30,7 @@ class TransactionServices{
     
     func deposit(_ target: SavingsAccount,amount: Double){
         target.balance += amount
-        let tnx = Transaction(tID: BankUtils.newTnxId(), by: "tnxservices", date: Date.now, amount: amount, type: .debit)
+        let tnx = Transaction(tID: BankUtils.newTnxId(), by: "tnxservices", date: Date(), amount: amount, type: .credit)
         print(tnx.description + "  New Balance: \(target.balance)")
         db.logTNX(accNo: target.accountNumber, tnx)
     }
@@ -38,7 +38,7 @@ class TransactionServices{
     func withdraw(_ target: SavingsAccount,amount: Double){
         
         target.balance -= amount
-        let tnx = Transaction(tID: BankUtils.newTnxId(), by: "tnxservices", date: Date(), amount: amount, type: .credit)
+        let tnx = Transaction(tID: BankUtils.newTnxId(), by: "tnxservices", date: Date(), amount: amount, type: .debit)
         print(tnx.description + "  New Balance: \(target.balance)")
         db.logTNX(accNo: target.accountNumber, tnx)
         

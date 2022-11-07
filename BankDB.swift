@@ -32,12 +32,6 @@ class BankDB: TransactionsDB,UserDB,UserServicesDB,Codable{
     
     
     func logTNX(accNo: String, _ tnx: Transaction) {
-//        if var accPassBook = transactionDB[accNo]{
-//            accPassBook.append(tnx)
-//        }else{
-//            transactionDB[accNo] = [tnx]
-//        }
-        
         transactionDB[accNo,default: []].append(tnx)
     }
     
@@ -49,17 +43,8 @@ class BankDB: TransactionsDB,UserDB,UserServicesDB,Codable{
     }
     
     func getUserBy(phoneNumber: String) -> User? {
-        if let user = userDB[phoneNumber]{
-            return user
-        }
-        else {
-            return nil
-        }
+      return userDB[phoneNumber]
     }
-//    deinit {
-//        let encoder = JSONEncoder()
-//        let data = try! encoder.encode(self)
-//        print(String(data: data, encoding: .utf8)!)
-//    }
+
 }
 

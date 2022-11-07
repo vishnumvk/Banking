@@ -92,7 +92,6 @@ public struct InputManager{
     
     
     public static func readValidPhoneNumber(readFrom : (Bool)->String? = readLine,validateBy : (String)->Bool = validatePhUsingRegex, errorMsg : String? = nil)->String{
-//        let isnotValid : Bool = true
         repeat{
             if let ph = readFrom(true){
                 if(validateBy(ph)){
