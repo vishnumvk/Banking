@@ -15,7 +15,7 @@
 		477806ED28FFF48100452F1E /* TransactionServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477806EC28FFF48100452F1E /* TransactionServices.swift */; };
 		477806F028FFFAF600452F1E /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477806EF28FFFAF600452F1E /* Transaction.swift */; };
 		477806F2290110DD00452F1E /* BankDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477806F1290110DD00452F1E /* BankDB.swift */; };
-		477806F429013CBD00452F1E /* Bank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477806F329013CBD00452F1E /* Bank.swift */; };
+		477806F429013CBD00452F1E /* BankUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477806F329013CBD00452F1E /* BankUtils.swift */; };
 		47D66D95290FFC65004F09D3 /* UserReg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D66D94290FFC65004F09D3 /* UserReg.swift */; };
 		47D66D972910EFE5004F09D3 /* LoginControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D66D962910EFE5004F09D3 /* LoginControl.swift */; };
 		47F8D3772911168600D2062C /* UserServicesMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F8D3762911168600D2062C /* UserServicesMenu.swift */; };
@@ -43,7 +43,7 @@
 		477806EC28FFF48100452F1E /* TransactionServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionServices.swift; sourceTree = "<group>"; };
 		477806EF28FFFAF600452F1E /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		477806F1290110DD00452F1E /* BankDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankDB.swift; sourceTree = "<group>"; };
-		477806F329013CBD00452F1E /* Bank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bank.swift; sourceTree = "<group>"; };
+		477806F329013CBD00452F1E /* BankUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankUtils.swift; sourceTree = "<group>"; };
 		47D66D94290FFC65004F09D3 /* UserReg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReg.swift; sourceTree = "<group>"; };
 		47D66D962910EFE5004F09D3 /* LoginControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginControl.swift; sourceTree = "<group>"; };
 		47F8D3762911168600D2062C /* UserServicesMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServicesMenu.swift; sourceTree = "<group>"; };
@@ -73,7 +73,7 @@
 				477806EC28FFF48100452F1E /* TransactionServices.swift */,
 				477806F1290110DD00452F1E /* BankDB.swift */,
 				473EE286290F97F60045A694 /* InputManager.swift */,
-				477806F329013CBD00452F1E /* Bank.swift */,
+				477806F329013CBD00452F1E /* BankUtils.swift */,
 				477806D928FE855C00452F1E /* main.swift */,
 				477806D728FE855C00452F1E /* Products */,
 			);
@@ -155,7 +155,7 @@
 				477806E928FFD27F00452F1E /* Accounts.swift in Sources */,
 				47D66D972910EFE5004F09D3 /* LoginControl.swift in Sources */,
 				477806F028FFFAF600452F1E /* Transaction.swift in Sources */,
-				477806F429013CBD00452F1E /* Bank.swift in Sources */,
+				477806F429013CBD00452F1E /* BankUtils.swift in Sources */,
 				47570AE1291127240011D15A /* MainPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

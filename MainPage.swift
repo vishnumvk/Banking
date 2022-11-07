@@ -43,25 +43,33 @@ class MainPage{
                     try loginManager.userLogin(phoneNumber: ph)
 //                    print("needs: implementation for successful login")
                 }
-                catch LoginErrors.invalidLogin{
-                    print("Invalid login")
-                }
-                catch LoginErrors.unregisteredUser{
-                    print("the number is not registered..")
-                }
                 catch{
-                    print("error in login")
+                    switch error{
+                    case LoginErrors.invalidLogin:
+                            print("Invalid login")
+                        
+                    case LoginErrors.unregisteredUser:
+                            print("the number is not registered..")
+                        
+                    default:
+                            print("error in login")
+                        
+                    }
                 }
                 //register
             case 2 :         
                 do {
                    try UserReg(db).createUser()
                 }
-                catch UserRegErrors.foundExsistingUser{
-                    print("your are an exsisting user ! try login")
-                }
                 catch{
-                    print("error in registration")
+                    switch error{
+                    case UserRegErrors.foundExsistingUser:
+                            print("your are an exsisting user ! try login")
+                        
+                    default:
+                            print("error in registration")
+                        
+                    }
                 }
             case 0:
                 hitexit = true

@@ -20,3 +20,5 @@ MainPage.load()
 let encoder = JSONEncoder()
 let data = try! encoder.encode(BankDB.db)
 print(String(data: data, encoding: .utf8)!)
+
+
