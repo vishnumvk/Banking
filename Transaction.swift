@@ -14,7 +14,7 @@ enum TransactionType: String,Codable{
 
 struct Transaction: CustomStringConvertible,Codable{
     var description: String{
-        return "TID: \(self.tID)  \(self.date)   credit/debit: \(self.type.rawValue)  amount: \(self.amount)    by: \(self.by)"
+        return "TID: \(self.tID)  \(self.date)   credit/debit: \(self.type.rawValue)  amount: \(String(format: "%10.2f", self.amount))    by: \(self.by)"
     }
     
     let tID: String
