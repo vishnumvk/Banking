@@ -33,8 +33,8 @@ class UserServicesMenu{
     
     
     func load(){
-        
-        
+        let acc = db.getSavingsAccount(userID: user.phonenumber)!
+        let accServices = TransactionServices(db: BankDB.shared)
         var hitexit = false
         repeat{
             
@@ -47,18 +47,17 @@ class UserServicesMenu{
                   0 --- Exit
                   """)
             let choice = InputManager.readValidInt()
-            let acc = db.getSavingsAccount(userID: user.phonenumber)!
             switch Options(rawValue: choice){
                 
             case .deposit:
                 let amount = InputManager.readValidAmount()
-                let tnx = TransactionServices(db: db).deposit(acc, amount: amount)
+                let tnx = accServices.deposit(acc, amount: amount)
                 print(tnx.description)
                 
             case .withdraw:
                 let amount = InputManager.readValidAmount()
                 do{
-                   let tnx = try TransactionServices(db: db).withdraw(acc, amount: amount)
+                   let tnx = try accServices.withdraw(acc, amount: amount)
                     print(tnx.description)
                 }catch{
                     switch error{
@@ -77,7 +76,7 @@ class UserServicesMenu{
                     guard beneficiaryId == user.phonenumber else{throw TransactionErrors.cannotTransferToSelf}
                     guard let beneficiary = db.getSavingsAccount(userID: beneficiaryId)else{throw TransactionErrors.beneficiaryNotFound}
                     let amount = InputManager.readValidAmount()
-                    let tnx = try TransactionServices(db: db).transfer(from: acc, to: beneficiary, amount: amount)
+                    let tnx = try accServices.transfer(from: acc, to: beneficiary, amount: amount)
                     print(tnx.description)
                 }catch{
                     switch error{
