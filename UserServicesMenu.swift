@@ -73,7 +73,7 @@ class UserServicesMenu{
             case .transfer:
                 do{
                     let beneficiaryId = InputManager.readValid(promtMsg: "Enter registered beneficiary's phone number :", validateBy: InputManager.validatePhUsingRegex)
-                    guard beneficiaryId == user.phonenumber else{throw TransactionErrors.cannotTransferToSelf}
+                    guard beneficiaryId != user.phonenumber else{throw TransactionErrors.cannotTransferToSelf}
                     guard let beneficiary = db.getSavingsAccount(userID: beneficiaryId)else{throw TransactionErrors.beneficiaryNotFound}
                     let amount = InputManager.readValidAmount()
                     let tnx = try accServices.transfer(from: acc, to: beneficiary, amount: amount)
