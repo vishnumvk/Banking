@@ -30,14 +30,16 @@ public struct InputManager{
     
     
     
-    public static func readValidAmount()->Double{
+    public static func readValidAmount(maxLimit: Double = 100001)->Double{
         
         repeat{
             print("Enter valid amount..")
             if let input = readLine(){
                 if let x = Double(input){
                     if x > 0.00{
-                        return (x * 100).rounded()/100;
+                        if x < maxLimit{
+                            return (x * 100).rounded()/100;
+                        }else{print("Maximum Limit: \(maxLimit-1)")}
                     }
                 }
             }
