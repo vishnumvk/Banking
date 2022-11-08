@@ -9,14 +9,15 @@ import Foundation
 
 class BankDB: TransactionsDB,UserDB,UserServicesDB,Codable{
     
+    
     private init(){
     }
     
     static let shared = loadSampleData()
     
-    var transactionDB : [String : [Transaction]]=[:]
-    var userDB: [String  : User] = [:]
-    var accDB: [String : SavingsAccount] = [:]
+    var transactionDB : [String : [Transaction]]=[:] //[account number : [transactions]]
+    var userDB: [String  : User] = [:]               //[phone number : user]
+    var accDB: [String : SavingsAccount] = [:]       //[userID : savings account]
     
     
     private static func loadSampleData()->BankDB{
@@ -37,7 +38,9 @@ class BankDB: TransactionsDB,UserDB,UserServicesDB,Codable{
             return BankDB()
         }
     }
-    
+    func userName(userID: String) -> String {
+        return userDB[userID]!.name
+    }
     
     func getSavingsAccount(userID: String) -> SavingsAccount? {
             return accDB[userID]

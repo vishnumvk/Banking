@@ -10,6 +10,7 @@ import Foundation
 protocol UserServicesDB: TransactionsDB,UserDB{
     
     func getSavingsAccount(userID: String)->SavingsAccount?
+    func userName(userID: String)->String
 
 }
 
@@ -52,13 +53,19 @@ class UserServicesMenu{
             case .deposit:
                 let amount = InputManager.readValidAmount()
                 let tnx = accServices.deposit(acc, amount: amount)
-                print(tnx.description + "   New Balance: \(acc.balance)")
+                print("""
+                      \(tnx.description)
+                      "New Balance: \(acc.balance)"
+                      """)
                 
             case .withdraw:
                 let amount = InputManager.readValidAmount()
                 do{
                    let tnx = try accServices.withdraw(acc, amount: amount)
-                   print(tnx.description + "   New Balance: \(acc.balance)")
+                    print("""
+                          \(tnx.description)
+                          "New Balance: \(acc.balance)"
+                          """)
                 }catch{
                     switch error{
                     case TransactionErrors.insufficientFunds:
@@ -74,10 +81,14 @@ class UserServicesMenu{
                 do{
                     let beneficiaryId = InputManager.readValid(promtMsg: "Enter registered beneficiary's phone number :", validateBy: InputManager.validatePhUsingRegex)
                     guard beneficiaryId != user.phonenumber else{throw TransactionErrors.cannotTransferToSelf}
-                    guard let beneficiary = db.getSavingsAccount(userID: beneficiaryId)else{throw TransactionErrors.beneficiaryNotFound}
+                    guard let beneficiaryAccount = db.getSavingsAccount(userID: beneficiaryId)else{throw TransactionErrors.beneficiaryNotFound}
+                    let beneficiaryName = db.userName(userID: beneficiaryId)
                     let amount = InputManager.readValidAmount()
-                    let tnx = try accServices.transfer(from: acc, to: beneficiary, amount: amount)
-                    print(tnx.description + "   New Balance: \(acc.balance)")
+                    let tnx = try accServices.transfer(from: acc, to: beneficiaryAccount, amount: amount, senderName: user.name, beneficiaryName: beneficiaryName)
+                    print("""
+                          \(tnx.description)
+                          "New Balance: \(acc.balance)"
+                          """)
                 }catch{
                     switch error{
                     case TransactionErrors.beneficiaryNotFound:
