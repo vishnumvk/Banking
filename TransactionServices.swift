@@ -52,7 +52,7 @@ class TransactionServices{
         }catch{
             throw error
         }
-        _ = deposit(reciever, amount: amount, by: "payment/\(sender)")
+        _ = deposit(reciever, amount: amount, by: "payment/\(senderName)")
         return senderEndTnx
     }
     
