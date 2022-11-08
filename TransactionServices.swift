@@ -30,14 +30,14 @@ class TransactionServices{
     let db : TransactionsDB
     
     
-    func deposit(_ target: SavingsAccount,amount: Double,by: String = "self/tnxservices")->Transaction{
+    func deposit(_ target: SavingsAccount,amount: Double,by: String = "self-tnxservices")->Transaction{
         target.balance += amount
         let tnx = Transaction(tID: BankUtils.newTnxId(), by: by, date: Date(), amount: amount, type: .credit)
         db.logTNX(accNo: target.accountNumber, tnx)
         return tnx
     }
     
-    func withdraw(_ target: SavingsAccount,amount: Double,by: String = "self/tnxservices")throws->Transaction{
+    func withdraw(_ target: SavingsAccount,amount: Double,by: String = "self-tnxservices")throws->Transaction{
         guard target.balance >= amount else{throw TransactionErrors.insufficientFunds}
         target.balance -= amount
         let tnx = Transaction(tID: BankUtils.newTnxId(), by: by, date: Date(), amount: amount, type: .debit)
@@ -48,11 +48,11 @@ class TransactionServices{
     func transfer(from sender: SavingsAccount,to reciever: SavingsAccount, amount: Double,senderName: String, beneficiaryName: String)throws-> Transaction{
         let senderEndTnx: Transaction
         do{
-            senderEndTnx = try withdraw(sender, amount: amount, by: "transferTo/\(beneficiaryName)")
+            senderEndTnx = try withdraw(sender, amount: amount, by: "transfer-To: \(beneficiaryName)")
         }catch{
             throw error
         }
-        _ = deposit(reciever, amount: amount, by: "payment/\(senderName)")
+        _ = deposit(reciever, amount: amount, by: "payment-from: \(senderName)")
         return senderEndTnx
     }
     

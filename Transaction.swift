@@ -9,12 +9,12 @@ import Foundation
 
 enum TransactionType: String,Codable{
     case credit
-    case debit
+    case debit = "debit "
 }
 
 struct Transaction: CustomStringConvertible,Codable{
     var description: String{
-        return "TID: \(self.tID)  \(self.date)   credit/debit: \(self.type)  amount: \(self.amount)    by: \(self.by)"
+        return "TID: \(self.tID)  \(self.date)   credit/debit: \(self.type.rawValue)  amount: \(self.amount)    by: \(self.by)"
     }
     
     let tID: String
