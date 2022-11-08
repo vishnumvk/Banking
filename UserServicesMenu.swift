@@ -9,8 +9,12 @@ import Foundation
 
 protocol UserServicesDB: TransactionsDB,UserDB{
     
-    func getSavingsAccount(userID: String)->SavingsAccount
+    func getSavingsAccount(userID: String)->SavingsAccount?
 
+}
+
+enum Options: Int{
+    case exit = 0,deposit,withdraw,transfer,transactions,balanceCheck
 }
 
 class UserServicesMenu{
@@ -35,23 +39,63 @@ class UserServicesMenu{
         repeat{
             
             print("""
-                  0 --- Exit
                   1 --- deposit
                   2 --- withdraw
-                  3 --- view transactions
-                  4 --- balance check
+                  3 --- transfer
+                  4 --- view transactions
+                  5 --- balance check
+                  0 --- Exit
                   """)
             let choice = InputManager.readValidInt()
-            let acc = db.getSavingsAccount(userID: user.phonenumber)
-            switch choice{
+            let acc = db.getSavingsAccount(userID: user.phonenumber)!
+            switch Options(rawValue: choice){
                 
-            case 1:
+            case .deposit:
                 let amount = InputManager.readValidAmount()
-                TransactionServices(db: db).deposit(acc, amount: amount)
-            case 2:
+                let tnx = TransactionServices(db: db).deposit(acc, amount: amount)
+                print(tnx.description)
+                
+            case .withdraw:
                 let amount = InputManager.readValidAmount()
-                TransactionServices(db: db).withdraw(acc, amount: amount)
-            case 3:
+                do{
+                   let tnx = try TransactionServices(db: db).withdraw(acc, amount: amount)
+                    print(tnx.description)
+                }catch{
+                    switch error{
+                    case TransactionErrors.insufficientFunds:
+                        print("Insufficient Balance !")
+                        print("AccNo: \(acc.accountNumber)   Available Balance: \(acc.balance)")
+                    default:
+                        print("Transaction Error !")
+                    }
+                }
+                
+                
+            case .transfer:
+                do{
+                    let beneficiaryId = InputManager.readValid(promtMsg: "Enter registered beneficiary's phone number :", validateBy: InputManager.validatePhUsingRegex)
+                    guard beneficiaryId == user.phonenumber else{throw TransactionErrors.cannotTransferToSelf}
+                    guard let beneficiary = db.getSavingsAccount(userID: beneficiaryId)else{throw TransactionErrors.beneficiaryNotFound}
+                    let amount = InputManager.readValidAmount()
+                    let tnx = try TransactionServices(db: db).transfer(from: acc, to: beneficiary, amount: amount)
+                    print(tnx.description)
+                }catch{
+                    switch error{
+                    case TransactionErrors.beneficiaryNotFound:
+                        print("beneficiary not found..!")
+                    case TransactionErrors.cannotTransferToSelf:
+                        print("Cannot transfer money to self..!")
+                    case TransactionErrors.insufficientFunds:
+                        print("Insufficient Balance !")
+                        print("AccNo: \(acc.accountNumber)   Available Balance: \(acc.balance)")
+                        
+                    default:
+                        print("error in transfering money..!")
+                    }
+                }
+                
+                
+            case .transactions:
                 print("AccNo: \(acc.accountNumber)   Closing Balance: \(acc.balance)")
                 
                 if let tnxs = db.getTransactionsOf(accNo: acc.accountNumber){
@@ -62,11 +106,11 @@ class UserServicesMenu{
                else{
                     print("no transactions..")
                 }
-            case 4:
                 
+            case .balanceCheck:
                 print("AccNo: \(acc.accountNumber)   Balance: \(acc.balance)")
             
-            case 0:
+            case .exit:
                 hitexit = true
                 
             default :

@@ -25,22 +25,14 @@ class UserReg{
     
     
     func createUser()throws{
-        let name = InputManager.readValid(promtMsg: "Enter valid name",validateBy: { name in
+         let name = InputManager.readValid(promtMsg: "Enter valid name",validateBy: { name in
             
             guard name.trimmingCharacters(in: .whitespacesAndNewlines) != ""
             else{
                 return false
             }
             let nameCharSet = CharacterSet(charactersIn: name)
-            
-            if(name.count >= 3 && name.count < 25 && nameCharSet.isSubset(of: .letters.union(.whitespaces))){
-                return true
-            }
-            else{
-                return false
-            }
-            
-            
+            return (name.count >= 3 && name.count < 25 && nameCharSet.isSubset(of: .letters.union(.whitespaces)))
         })
         
         let ph = InputManager.readValid(promtMsg: "Enter valid Phone number", validateBy: InputManager.validatePhUsingRegex)
@@ -51,19 +43,13 @@ class UserReg{
         
         let password = InputManager.readValid(promtMsg: "Enter valid four digit pin ",validateBy: { pin in
             let pinCharSet = CharacterSet(charactersIn: pin)
-            
-            if(pin.count == 4 && pinCharSet.isSubset(of: CharacterSet(charactersIn: "0123456789"))){
-                return true
-            }
-            else{
-                return false
-            }
-            
+            return (pin.count == 4 && pinCharSet.isSubset(of: CharacterSet(charactersIn: "0123456789")))
         })
         
-        
+
         let user = User(name: name.trimmingCharacters(in: .whitespacesAndNewlines), phonenumber: ph, password: password)
         db.addUser(user)
+        db.addSavingsAcc(userID: user.phonenumber, SavingsAccount(accountNumber: BankUtils.newSavingsAccNo(), IFSC: BankUtils.ifsc(), balance: 0.0))
     }
 
     

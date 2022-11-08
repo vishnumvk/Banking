@@ -7,15 +7,6 @@
 
 import Foundation
 
-//protocol Transaction{
-//
-//    var amount: Float { get }
-//    var TID: Int { get }
-//    var by: String { get }
-//    var date: Date { get }
-//
-//}
-
 enum TransactionType: String,Codable{
     case credit
     case debit

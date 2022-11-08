@@ -12,6 +12,7 @@ protocol UserDB{
     
     
     func addUser(_ user: User)
+    func addSavingsAcc(userID: String,_ newAcc: SavingsAccount)
     func getUserBy(phoneNumber: String)->User?
     
 }
@@ -53,7 +54,6 @@ class LoginControl{
             throw LoginErrors.unregisteredUser
         }
         if validateLogin(user){
-//            UserServicesMenu(db: BankDB.db, user: user).load()
             return user
         }
         else{

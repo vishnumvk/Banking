@@ -7,22 +7,16 @@
 
 import Foundation
 
-
-
-
-
-
-
-
+enum MainPageOptions: Int{
+    case exit = 0,login, register
+}
 
 
 class MainPage{
-    
-   
-    
+
    static func load(){
         
-       let db = BankDB.db
+       let db = BankDB.shared
 
         let loginManager = LoginControl(db: db)
 
@@ -35,13 +29,13 @@ class MainPage{
                   0 --- Exit
                   """)
             let choice = InputManager.readValidInt()
-            switch choice{
+            switch MainPageOptions(rawValue: choice){
                 //login
-            case 1 :
+            case .login :
                 do{
                     let ph = InputManager.readValid(promtMsg: "Enter valid phone number..", validateBy: InputManager.validatePhUsingRegex)
                     let loggedInUser =  try loginManager.userLogin(phoneNumber: ph)
-                    UserServicesMenu(db: BankDB.db, user: loggedInUser).load()
+                    UserServicesMenu(db: BankDB.shared, user: loggedInUser).load()
                 }
                 catch{
                     switch error{
@@ -57,7 +51,7 @@ class MainPage{
                     }
                 }
                 //register
-            case 2 :         
+            case .register :
                 do {
                    try UserReg(db).createUser()
                 }
@@ -70,7 +64,7 @@ class MainPage{
                             print("error in registration")
                     }
                 }
-            case 0:
+            case .exit:
                 hitexit = true
             default :
                 print("Enter a valid choice..")

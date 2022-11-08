@@ -15,7 +15,9 @@ protocol TransactionsDB{
     
 }
 
-
+enum TransactionErrors: Error{
+    case insufficientFunds,cannotTransferToSelf,beneficiaryNotFound
+}
 
 
 
@@ -28,24 +30,30 @@ class TransactionServices{
     let db : TransactionsDB
     
     
-    func deposit(_ target: SavingsAccount,amount: Double){
+    func deposit(_ target: SavingsAccount,amount: Double)->Transaction{
         target.balance += amount
         let tnx = Transaction(tID: BankUtils.newTnxId(), by: "tnxservices", date: Date(), amount: amount, type: .credit)
-        print(tnx.description + "  New Balance: \(target.balance)")
         db.logTNX(accNo: target.accountNumber, tnx)
+        return tnx
     }
     
-    func withdraw(_ target: SavingsAccount,amount: Double){
-        
+    func withdraw(_ target: SavingsAccount,amount: Double)throws->Transaction{
+        guard target.balance >= amount else{throw TransactionErrors.insufficientFunds}
         target.balance -= amount
         let tnx = Transaction(tID: BankUtils.newTnxId(), by: "tnxservices", date: Date(), amount: amount, type: .debit)
-        print(tnx.description + "  New Balance: \(target.balance)")
         db.logTNX(accNo: target.accountNumber, tnx)
-        
+        return tnx
     }
     
-    func checkBalance(_ target: SavingsAccount){
-        print("your balance : \(target.balance)")
+    func transfer(from sender: SavingsAccount,to reciever: SavingsAccount, amount: Double)throws-> Transaction{
+        let senderEndTnx: Transaction
+        do{
+            senderEndTnx = try withdraw(sender, amount: amount)
+        }catch{
+            throw error
+        }
+        _ = deposit(reciever, amount: amount)
+        return senderEndTnx
     }
     
     
