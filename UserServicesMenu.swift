@@ -52,13 +52,13 @@ class UserServicesMenu{
             case .deposit:
                 let amount = InputManager.readValidAmount()
                 let tnx = accServices.deposit(acc, amount: amount)
-                print(tnx.description)
+                print(tnx.description + " New Balance: \(acc.balance)")
                 
             case .withdraw:
                 let amount = InputManager.readValidAmount()
                 do{
                    let tnx = try accServices.withdraw(acc, amount: amount)
-                    print(tnx.description)
+                   print(tnx.description + " New Balance: \(acc.balance)")
                 }catch{
                     switch error{
                     case TransactionErrors.insufficientFunds:
@@ -77,7 +77,7 @@ class UserServicesMenu{
                     guard let beneficiary = db.getSavingsAccount(userID: beneficiaryId)else{throw TransactionErrors.beneficiaryNotFound}
                     let amount = InputManager.readValidAmount()
                     let tnx = try accServices.transfer(from: acc, to: beneficiary, amount: amount)
-                    print(tnx.description)
+                    print(tnx.description + " New Balance: \(acc.balance)")
                 }catch{
                     switch error{
                     case TransactionErrors.beneficiaryNotFound:
