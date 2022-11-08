@@ -53,7 +53,18 @@ class MainPage{
                 //register
             case .register :
                 do {
-                   try UserReg(db).createUser()
+                   let newUser = try UserReg(db).createUser()
+                   let newSavingsAccount = SavingsAccount(accountNumber: BankUtils.newSavingsAccNo(), IFSC: BankUtils.ifsc(), balance: 0.0)
+                   db.addSavingsAcc(userID: newUser.phonenumber,newSavingsAccount)
+                   print("Account created successfully...!")
+                   print("""
+                         Name: \(newUser.name)
+                         Phone number: \(newUser.phonenumber)
+                         SavingsAccountNumber: \(newSavingsAccount.accountNumber)
+                         IFSC: \(newSavingsAccount.ifsc)
+                         Balance:\(newSavingsAccount.balance)
+                        """)
+                   
                 }
                 catch{
                     switch error{

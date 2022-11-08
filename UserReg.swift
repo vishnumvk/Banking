@@ -24,7 +24,7 @@ class UserReg{
     
     
     
-    func createUser()throws{
+    func createUser()throws->User{
          let name = InputManager.readValid(promtMsg: "Enter valid name",validateBy: { name in
             
             guard name.trimmingCharacters(in: .whitespacesAndNewlines) != ""
@@ -49,7 +49,7 @@ class UserReg{
 
         let user = User(name: name.trimmingCharacters(in: .whitespacesAndNewlines), phonenumber: ph, password: password)
         db.addUser(user)
-        db.addSavingsAcc(userID: user.phonenumber, SavingsAccount(accountNumber: BankUtils.newSavingsAccNo(), IFSC: BankUtils.ifsc(), balance: 0.0))
+        return user
     }
 
     

@@ -21,14 +21,19 @@ class BankDB: TransactionsDB,UserDB,UserServicesDB,Codable{
     
     private static func loadSampleData()->BankDB{
         let jstring = """
-        {"userDB":{"8309914972":{"name":"sai","password":"2242","phonenumber":"8309914972"},"9949168919":{"name":"vishnu","password":"1234","phonenumber":"9949168919"}},"transactionDB":{"120221107112744":[{"amount":1000,"by":"tnxservices","tID":"TNX20221107112749","type":"credit","date":689513269.79052901},{"amount":100,"by":"tnxservices","tID":"TNX20221107112753","type":"credit","date":689513273.85206199},{"amount":120,"by":"tnxservices","tID":"TNX20221107112911","type":"debit","date":689513351.29195702}],"120221107111434":[{"amount":1000,"by":"tnxservices","tID":"TNX20221107111454","type":"credit","date":689512494.98350096},{"amount":100,"by":"tnxservices","tID":"TNX20221107112706","type":"debit","date":689513226.23118103}]},"accDB":{"8309914972":{"balance":980,"accountNumber":"120221107112744","IFSC":"SABK00003112"},"9949168919":{"balance":900,"accountNumber":"120221107111434","IFSC":"SABK00003112"}}}
+        {"userDB":{"8309914972":{"name":"vishnu","password":"1234","phonenumber":"8309914972"},"9949168919":{"name":"sai","password":"2242","phonenumber":"9949168919"}},"transactionDB":{"120221108090757":[{"amount":1000,"by":"tnxservices","tID":"TNX20221108090837","type":"credit","date":689591317.70038199},{"amount":100,"by":"tnxservices","tID":"TNX20221108090847","type":"debit","date":689591327.84489202},{"amount":1000,"by":"tnxservices","tID":"TNX20221108090938","type":"credit","date":689591378.44259799},{"amount":1000,"by":"tnxservices","tID":"TNX20221108090943","type":"debit","date":689591383.65290296},{"amount":2000,"by":"tnxservices","tID":"TNX20221108091022","type":"credit","date":689591422.84041405},{"amount":1000,"by":"tnxservices","tID":"TNX20221108091034","type":"debit","date":689591434.68696702}],"120221108090821":[{"amount":100,"by":"tnxservices","tID":"TNX20221108090847","type":"credit","date":689591327.84492803},{"amount":1000,"by":"tnxservices","tID":"TNX20221108091034","type":"credit","date":689591434.68699896},{"amount":100,"by":"tnxservices","tID":"TNX20221108091105","type":"credit","date":689591465.30043006},{"amount":25,"by":"tnxservices","tID":"TNX20221108091108","type":"debit","date":689591468.88522303}]},"accDB":{"8309914972":{"balance":1900,"accountNumber":"120221108090757","ifsc":"SABK00003112"},"9949168919":{"balance":1175,"accountNumber":"120221108090821","ifsc":"SABK00003112"}}}
         """
 
         let decoder = JSONDecoder()
         let jdata = jstring.data(using: .utf8)
-        if let db = try? decoder.decode(BankDB.self, from: jdata!){
+        do{
+            let db = try decoder.decode(BankDB.self, from: jdata!)
             return db
-        }else{
+        }
+        catch{
+            print(error)
+            print("failed to load json data")
+            print("loaded empty db")
             return BankDB()
         }
     }

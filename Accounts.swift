@@ -14,7 +14,7 @@ protocol BankAccount{
     
     
     var accountNumber: String { get }
-    var IFSC: String { get }
+    var ifsc: String { get }
     var balance: Double { get set }
     
     
@@ -29,13 +29,13 @@ class SavingsAccount: BankAccount,Codable{
     
     let accountNumber: String
     
-    let IFSC: String
+    let ifsc: String
     
     var balance: Double
     
      init(accountNumber: String, IFSC: String, balance: Double) {
         self.accountNumber = accountNumber
-        self.IFSC = IFSC
+        self.ifsc = IFSC
         self.balance = balance
     }
     
@@ -46,13 +46,13 @@ class CurrentAccount: BankAccount, Codable{
     
     let accountNumber: String
     
-    let IFSC: String
+    let ifsc: String
     
     var balance: Double
     
      init(accountNumber: String, IFSC: String, balance: Double) {
         self.accountNumber = accountNumber
-        self.IFSC = IFSC
+        self.ifsc = IFSC
         self.balance = balance
     }
     
