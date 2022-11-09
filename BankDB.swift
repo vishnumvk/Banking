@@ -18,13 +18,15 @@ class BankDB: TransactionsDB,UserDB,UserServicesDB,Codable{
     }
     
     static let shared = loadSampleData()
-    static let dataBaseFileUrl = URL(fileURLWithPath: "/Users/vishnu-pt6278/Desktop/projects/banking/Banking/bankDB.json")
+    static let dataBaseFileUrl = FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("Desktop/projects/banking/Banking/bankDB.json")
+    
     var transactionDB : [String : [Transaction]]=[:] //[account number : [transactions]]
     var userDB: [String  : User] = [:]               //[phone number : user]
     var accDB: [String : SavingsAccount] = [:]       //[userID : savings account]
     
     
     private static func loadSampleData()->BankDB{
+        
         let data = try? String(contentsOf: dataBaseFileUrl).data(using: .utf8)
         let decoder = JSONDecoder()
         
@@ -40,6 +42,7 @@ class BankDB: TransactionsDB,UserDB,UserServicesDB,Codable{
             return BankDB()
         }
     }
+    
     func userName(userID: String) -> String {
         return userDB[userID]!.name
     }
@@ -47,11 +50,10 @@ class BankDB: TransactionsDB,UserDB,UserServicesDB,Codable{
     func getSavingsAccount(userID: String) -> SavingsAccount? {
             return accDB[userID]
     }
+    
     func addSavingsAcc(userID: String, _ newAcc: SavingsAccount) {
         accDB[userID] = newAcc
     }
-    
-    
     
     func logTNX(accNo: String, _ tnx: Transaction) {
         transactionDB[accNo,default: []].append(tnx)
@@ -60,6 +62,7 @@ class BankDB: TransactionsDB,UserDB,UserServicesDB,Codable{
     func getTransactionsOf(accNo: String) -> [Transaction]? {
         return transactionDB[accNo]
     }
+    
     func addUser(_ user: User) {
         userDB[user.phonenumber] = user
     }

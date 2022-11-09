@@ -20,23 +20,20 @@ enum Options: Int{
 
 class UserServicesMenu{
     
-    
      init(db: UserServicesDB, user: User) {
         self.db = db
         self.user = user
     }
     
-    
-    
-    
     let db: UserServicesDB
     let user: User
-    
-    
+        
     func load(){
+        
         let acc = db.getSavingsAccount(userID: user.phonenumber)!
         let accServices = TransactionServices(db: BankDB.shared)
         var hitexit = false
+        
         repeat{
             
             print("""
@@ -59,6 +56,7 @@ class UserServicesMenu{
                       """)
                 
             case .withdraw:
+                
                 let amount = InputManager.readValidAmount()
                 do{
                    let tnx = try accServices.withdraw(acc, amount: amount)
@@ -78,17 +76,27 @@ class UserServicesMenu{
                 
                 
             case .transfer:
+                
                 do{
                     let beneficiaryId = InputManager.readValid(promtMsg: "Enter registered beneficiary's phone number :", validateBy: InputManager.validatePhUsingRegex)
-                    guard beneficiaryId != user.phonenumber else{throw TransactionErrors.cannotTransferToSelf}
-                    guard let beneficiaryAccount = db.getSavingsAccount(userID: beneficiaryId)else{throw TransactionErrors.beneficiaryNotFound}
+                    
+                    guard beneficiaryId != user.phonenumber else{
+                        throw TransactionErrors.cannotTransferToSelf
+                    }
+                    
+                    guard let beneficiaryAccount = db.getSavingsAccount(userID: beneficiaryId)else{
+                        throw TransactionErrors.beneficiaryNotFound
+                    }
+                    
                     let beneficiaryName = db.userName(userID: beneficiaryId)
                     let amount = InputManager.readValidAmount()
                     let tnx = try accServices.transfer(from: acc, to: beneficiaryAccount, amount: amount, senderName: user.name, beneficiaryName: beneficiaryName)
+                    
                     print("""
                           \(tnx.description)
                           "New Balance: \(acc.balance)"
                           """)
+                    
                 }catch{
                     switch error{
                     case TransactionErrors.beneficiaryNotFound:
@@ -106,6 +114,7 @@ class UserServicesMenu{
                 
                 
             case .transactions:
+                
                 print("AccNo: \(acc.accountNumber)   Closing Balance: \(acc.balance)")
                 
                 if let tnxs = db.getTransactionsOf(accNo: acc.accountNumber){

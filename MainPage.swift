@@ -52,10 +52,13 @@ class MainPage{
                 }
                 //register
             case .register :
+                
                 do {
-                   let newUser = try UserReg(db).createUser()
+                    
+                   let newUser = try UserReg(db).registerNewUser()
                    let newSavingsAccount = SavingsAccount(accountNumber: BankUtils.newSavingsAccNo(), IFSC: BankUtils.ifsc(), balance: 0.0)
                    db.addSavingsAcc(userID: newUser.phonenumber,newSavingsAccount)
+                    
                    print("Account created successfully...!")
                    print("""
                          Name: \(newUser.name)
@@ -68,18 +71,22 @@ class MainPage{
                 }
                 catch{
                     switch error{
-                    case UserRegErrors.foundExsistingUser:
+                    case UserRegErrors.foundExistingUser:
                             print("your are an exsisting user ! try login")
                         
                     default:
                             print("error in registration")
                     }
                 }
+                
+                
             case .exit:
                 hitexit = true
+                
             default :
                 print("Enter a valid choice..")
             }
+            
         }
         while(!hitexit)
 

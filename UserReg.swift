@@ -8,7 +8,7 @@
 import Foundation
 
 enum UserRegErrors: Error{
-    case foundExsistingUser
+    case foundExistingUser
 }
 
 
@@ -24,21 +24,22 @@ class UserReg{
     
     
     
-    func createUser()throws->User{
+    func registerNewUser()throws->User{
          let name = InputManager.readValid(promtMsg: "Enter valid name",validateBy: { name in
             
-            guard name.trimmingCharacters(in: .whitespacesAndNewlines) != ""
-            else{
+            guard name.trimmingCharacters(in: .whitespacesAndNewlines) != "" else{
                 return false
             }
+             
             let nameCharSet = CharacterSet(charactersIn: name)
             return (name.count >= 3 && name.count < 25 && nameCharSet.isSubset(of: .letters.union(.whitespaces)))
+             
         })
         
         let ph = InputManager.readValid(promtMsg: "Enter valid Phone number", validateBy: InputManager.validatePhUsingRegex)
        
        if (db.getUserBy(phoneNumber: ph)) != nil{
-           throw UserRegErrors.foundExsistingUser
+           throw UserRegErrors.foundExistingUser
        }
         
         let password = InputManager.readValid(promtMsg: "Enter valid four digit pin ",validateBy: { pin in

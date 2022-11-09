@@ -33,26 +33,19 @@ class LoginControl{
     func validateLogin(_ user: User)->Bool{
         
         let pass = InputManager.readValid(promtMsg: "Enter your password..") { password in
-            if password.trimmingCharacters(in: .whitespacesAndNewlines) != ""{
-                return true
-            }
-            else{
-                return false
-            }
+             return password.trimmingCharacters(in: .whitespacesAndNewlines) != ""
         }
         
-        if user.password == pass{
-            return true
-        }
-        return false
+        return user.password == pass
     }
     
     
     func userLogin(phoneNumber: String)throws->User{
-        guard let user = db.getUserBy(phoneNumber: phoneNumber)
-        else{
+        
+        guard let user = db.getUserBy(phoneNumber: phoneNumber)else{
             throw LoginErrors.unregisteredUser
         }
+        
         if validateLogin(user){
             return user
         }
