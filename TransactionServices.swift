@@ -53,7 +53,7 @@ class TransactionServices{
         return tnx
     }
     
-    func transfer(from sender: SavingsAccount,to reciever: SavingsAccount, amount: Double,senderName: String, beneficiaryName: String)throws-> Transaction{
+    @discardableResult func transfer(from sender: SavingsAccount,to reciever: SavingsAccount, amount: Double,senderName: String, beneficiaryName: String)throws-> Transaction{
         
         let senderEndTnx: Transaction
         
