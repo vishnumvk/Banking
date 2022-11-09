@@ -31,7 +31,7 @@ class TransactionServices{
     let db : TransactionsDB
     
     
-    func deposit(_ target: SavingsAccount,amount: Double,by: String = "self-tnxservices")->Transaction{
+    @discardableResult func deposit(_ target: SavingsAccount,amount: Double,by: String = "self-tnxservices")->Transaction{
         
         target.balance += amount
         let tnx = Transaction(tID: BankUtils.newTnxId(), by: by, date: Date(), amount: amount, type: .credit)
@@ -40,7 +40,7 @@ class TransactionServices{
         return tnx
     }
     
-    func withdraw(_ target: SavingsAccount,amount: Double,by: String = "self-tnxservices")throws->Transaction{
+    @discardableResult func withdraw(_ target: SavingsAccount,amount: Double,by: String = "self-tnxservices")throws->Transaction{
         
         guard target.balance >= amount else{
             throw TransactionErrors.insufficientFunds
@@ -63,7 +63,7 @@ class TransactionServices{
             throw error
         }
         
-        _ = deposit(reciever, amount: amount, by: "payment-from: \(senderName)")
+        deposit(reciever, amount: amount, by: "payment-from: \(senderName)")
         
         return senderEndTnx
     }
