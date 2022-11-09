@@ -24,9 +24,7 @@ class BankUtils{
     
     private static func idGenerator()->String{
         
-        var val = String(Date().timeIntervalSinceReferenceDate)
-        val.remove(at: val.index(val.startIndex, offsetBy: 9)) //removes floating point.
-        return val
+        return String(Int(Date().timeIntervalSince1970 * 10000))
     }
     
     static func newTnxId()->String{
