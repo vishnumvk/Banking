@@ -44,6 +44,7 @@
 		477806EF28FFFAF600452F1E /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		477806F1290110DD00452F1E /* BankDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankDB.swift; sourceTree = "<group>"; };
 		477806F329013CBD00452F1E /* BankUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankUtils.swift; sourceTree = "<group>"; };
+		4799E847291B7B4300B3A3B3 /* bankDB.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = bankDB.json; sourceTree = "<group>"; };
 		47D66D94290FFC65004F09D3 /* UserReg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReg.swift; sourceTree = "<group>"; };
 		47D66D962910EFE5004F09D3 /* LoginControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginControl.swift; sourceTree = "<group>"; };
 		47F8D3762911168600D2062C /* UserServicesMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServicesMenu.swift; sourceTree = "<group>"; };
@@ -63,6 +64,7 @@
 		477806CD28FE855C00452F1E = {
 			isa = PBXGroup;
 			children = (
+				4799E847291B7B4300B3A3B3 /* bankDB.json */,
 				47570AE0291127240011D15A /* MainPage.swift */,
 				47F8D3762911168600D2062C /* UserServicesMenu.swift */,
 				47D66D962910EFE5004F09D3 /* LoginControl.swift */,

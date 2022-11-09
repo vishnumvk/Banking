@@ -6,6 +6,10 @@
 //
 
 import Foundation
+enum jsonFileErrors: Error{
+    case dataNotFound
+    case encodingError
+}
 
 class BankDB: TransactionsDB,UserDB,UserServicesDB,Codable{
     
@@ -14,21 +18,19 @@ class BankDB: TransactionsDB,UserDB,UserServicesDB,Codable{
     }
     
     static let shared = loadSampleData()
-    
+    static let dataBaseFileUrl = URL(fileURLWithPath: "/Users/vishnu-pt6278/Desktop/projects/banking/Banking/bankDB.json")
     var transactionDB : [String : [Transaction]]=[:] //[account number : [transactions]]
     var userDB: [String  : User] = [:]               //[phone number : user]
     var accDB: [String : SavingsAccount] = [:]       //[userID : savings account]
     
     
     private static func loadSampleData()->BankDB{
-        let jstring = """
-        {"userDB":{"8309914972":{"name":"vishnu","password":"1234","phonenumber":"8309914972"},"9949168919":{"name":"sai","password":"2242","phonenumber":"9949168919"}},"transactionDB":{"120221108090757":[{"amount":2000,"by":"payment-from: sai","tID":"TNX20221108110033","type":"credit","date":689598033.11493802},{"amount":1549,"by":"self-tnxservices","tID":"TNX20221108110119","type":"credit","date":689598079.95072496},{"amount":1000,"by":"self-tnxservices","tID":"TNX20221108110125","type":"debit","date":689598085.76739299},{"amount":1000,"by":"transfer-To: sai","tID":"TNX20221108110136","type":"debit","date":689598096.34862304}],"120221108090821":[{"amount":5000,"by":"self-tnxservices","tID":"TNX20221108105947","type":"credit","date":689597987.12673104},{"amount":1000,"by":"self-tnxservices","tID":"TNX20221108105957","type":"debit","date":689597997.21536505},{"amount":2000,"by":"transfer-To: vishnu","tID":"TNX20221108110033","type":"debit","date":689598033.11490095},{"amount":1000,"by":"payment-from: vishnu","tID":"TNX20221108110136","type":"credit","date":689598096.34865701}]},"accDB":{"8309914972":{"balance":1549,"accountNumber":"120221108090757","ifsc":"SABK00003112"},"9949168919":{"balance":3000,"accountNumber":"120221108090821","ifsc":"SABK00003112"}}}
-        """
-
+        let data = try? String(contentsOf: dataBaseFileUrl).data(using: .utf8)
         let decoder = JSONDecoder()
-        let jdata = jstring.data(using: .utf8)
+        
         do{
-            let db = try decoder.decode(BankDB.self, from: jdata!)
+            guard let data else{ throw jsonFileErrors.dataNotFound }
+            let db = try decoder.decode(BankDB.self, from: data)
             return db
         }
         catch{

@@ -8,10 +8,22 @@
 import Foundation
 
 
+
+
 MainPage.load()
 
-let encoder = JSONEncoder()
-let data = try! encoder.encode(BankDB.shared)
-print(String(data: data, encoding: .utf8)!)
+do{
+    let encoder = JSONEncoder()
+    let data = try encoder.encode(BankDB.shared)
+    try data.write(to: BankDB.dataBaseFileUrl)
+}
+catch{
+    switch error{
+    default :
+        print(error)
+    }
+}
+
+
 
 
